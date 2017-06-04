@@ -1,0 +1,37 @@
+version: "2.1"
+
+services:
+  api:
+    build: backend
+
+    environment:
+      FLASK_APP: skael
+      FLASK_DEBUG: 1
+      LC_ALL: C.UTF-8
+      LANG: C.UTF-8
+      PYTHONUNBUFFERED: 1
+      PYTHONPATH: .
+    working_dir: /skael
+    command: "flask run -h 0.0.0.0 -p 80"
+
+    volumes:
+      - backend-socket:/var/run/backend/api
+      - ./backend/skael:/skael
+      - ./backend/virtualenv:/virtualenv
+
+  nginx:
+    build: frontend
+
+    environment:
+      DEBUG: 1
+    links:
+      - angular
+
+  angular:
+    build: frontend
+
+    working_dir: /skael
+    command: "ng serve --host 0.0.0.0 --port 80"
+
+    volumes:
+      - ./frontend/skael:/skael

@@ -1,0 +1,8 @@
+version: "2.1"
+
+services:
+  api:
+    image: "skael/backend:$BRANCH"
+
+  nginx:
+    image: "skael/frontend:$BRANCH"

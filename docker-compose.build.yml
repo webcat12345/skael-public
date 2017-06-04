@@ -1,0 +1,8 @@
+version: "2.1"
+
+services:
+  api:
+    build: backend
+
+  nginx:
+    build: frontend

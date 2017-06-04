@@ -1,0 +1,13 @@
+#!/bin/bash -eux
+DUMP="$1"
+
+SERVICE_NAME="skael"
+
+POSTGRES_USER="postgres"
+POSTGRES_DATABASE="postgres"
+
+echo "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid();" | docker exec -i "$SERVICE_NAME"_postgres_1 psql -U "$POSTGRES_USER"
+docker exec -i "$SERVICE_NAME"_postgres_1 dropdb -U "$POSTGRES_USER" "$POSTGRES_DATABASE"
+docker exec -i "$SERVICE_NAME"_postgres_1 createdb -U "$POSTGRES_USER" "$POSTGRES_DATABASE"
+
+cat "$DUMP" | docker exec -i "$SERVICE_NAME"_postgres_1 psql -U "$POSTGRES_USER" "$POSTGRES_DATABASE"

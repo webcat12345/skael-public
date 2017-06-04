@@ -1,0 +1,50 @@
+version: "2.1"
+
+services:
+  api:
+    environment:
+      LC_ALL: C.UTF-8
+      LANG: C.UTF-8
+
+    links:
+      - postgres
+    volumes:
+      - backend-socket:/var/run/backend/api
+
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        "max-size": "1m"
+        "max-file": "5"
+
+  nginx:
+    ports:
+      - "80:80"
+    volumes:
+      - backend-socket:/var/run/backend/api
+
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        "max-size": "1m"
+        "max-file": "5"
+
+  postgres:
+    image: postgres:9.6.3
+    environment:
+      LC_ALL: C.UTF-8
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        "max-size": "1m"
+        "max-file": "5"
+
+volumes:
+  backend-socket:
+  postgres-data:
