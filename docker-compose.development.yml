@@ -1,11 +1,11 @@
-version: "2.1"
+version: "2.0"
 
 services:
   api:
     build: backend
 
     environment:
-      FLASK_APP: skael
+      FLASK_APP: wsgi.py
       FLASK_DEBUG: 1
       LC_ALL: C.UTF-8
       LANG: C.UTF-8

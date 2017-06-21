@@ -21,6 +21,10 @@
         }
     {% endif %}
 
+    location /users/ {
+        {{ backend_pass(environ) }}
+    }
+
     location /api {
         {{ backend_pass(environ) }}
     }
