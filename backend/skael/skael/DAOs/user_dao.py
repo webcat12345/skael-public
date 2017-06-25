@@ -3,6 +3,7 @@ import uuid
 
 from http import HTTPStatus
 from sqlalchemy.exc import IntegrityError
+from flask_jwt import current_identity
 
 from skael.models import db
 from skael.models.user_table import UserTable as User
@@ -46,7 +47,7 @@ class UserDAO(object):
         ).first()
 
         if found_user is None:
-            logging.info(
+            logging.error(
                 'Failed to retrieve user by username: {0}'.format(username)
             )
 
@@ -128,6 +129,26 @@ class UserDAO(object):
         exec_and_commit(db.session.add, new_user, skip_commit=skip_commit)
 
         return new_user
+
+    def logout_current_user(self):
+        """
+        Handles taking the currently authenticated JWT in the request,
+        parsing out the user's public ID, and logging it out.
+
+        :raises: DAOException
+        """
+        if current_identity is None:
+            raise DAOException('User is not currently logged in.')
+
+        db.session.query(
+            User
+        ).filter_by(
+            public_id=current_identity.public_id
+        ).update({
+            'jwt_claim': None
+        })
+
+        db.session.commit()
 
     def update_user_data(self, user_id, **args):
         _update = {}

@@ -22,7 +22,7 @@ class Users(MethodView):
         user_info = UserDAO().get(user_id)
 
         if user_info is None:
-            logging.info('Requested user ({0} does not exist.'.format(
+            logging.error('Requested user ({0} does not exist.'.format(
                 user_id
             ))
 
@@ -32,7 +32,7 @@ class Users(MethodView):
             )
 
         if not user_info.is_validated:
-            logging.info(
+            logging.error(
                 'Requested unvalidated account: {0}'.format(user_id)
             )
 

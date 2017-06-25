@@ -43,7 +43,7 @@ class MailgunIntegration(object):
             if response.status_code == HTTPStatus.OK:
                 return response.json
         except (Timeout, RequestException) as e:
-            logging.info(
+            logging.error(
                 'Failed to send email through mailgun: {0}'.format(
                     e
                 )

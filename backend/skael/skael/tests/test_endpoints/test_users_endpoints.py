@@ -8,8 +8,6 @@ from skael.models import db
 from skael.models.user_table import UserTable as User
 from skael.skael import create_app
 from skael.DAOs.user_dao import UserDAO
-from skael.utils.marshalizers import UserMarshal
-from skael.utils.exceptions import IntegrationException
 
 app = create_app()
 
@@ -55,6 +53,14 @@ class TestUserRestPasswordTestCase(unittest.TestCase):
 
     def tearDown(self):
         with app.app_context():
+            if self.access_token is not None:
+                self.test_client.delete(
+                    '/users/logout',
+                    headers=dict(
+                        Authorization='Jwt {0}'.format(self.access_token)
+                    )
+                )
+
             db.session.query(User).delete()
             db.session.commit()
 

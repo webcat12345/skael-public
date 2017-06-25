@@ -12,6 +12,7 @@ from skael.models import db
 from skael.api import user_export_routes
 from skael.api import reset_export_routes
 from skael.api import verify_export_routes
+from skael.api import logout_export_routes
 from skael.utils.error_handler import register_error_handlers
 
 
@@ -51,10 +52,10 @@ def create_app(config_file=None):
                                 else None))
 
     with app.app_context():
-
         user_export_routes(app)
         verify_export_routes(app)
         reset_export_routes(app)
+        logout_export_routes(app)
 
         # This is just a test will be removed in production
         # to follow best practises

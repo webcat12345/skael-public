@@ -166,7 +166,7 @@ class UserFacade(object):
         try:
             db.session.commit()
         except IntegrityError as e:
-            logging.info(
+            logging.error(
                 'Failed to commit: {0}'.format(e)
             )
 
