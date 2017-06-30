@@ -70,6 +70,5 @@ def create_app(config_file=None):
 
         db.init_app(app)
         app.db = db
-        db.create_all()
 
     return app
