@@ -1,3 +1,4 @@
+import json
 from datetime import datetime, timedelta
 
 import jwt
@@ -23,7 +24,7 @@ class FlaskJWTWrapper(object):
             ).filter_by(
                 public_id=user.public_id
             ).update({
-                'jwt_claim': jwt_claim
+                'jwt_claim': jwt_claim,
             })
             db.session.commit()
 
@@ -47,7 +48,18 @@ class FlaskJWTWrapper(object):
         keep_logged_in = request.headers.get('KeepLoggedIn')
         jwt_expiration_delta = app.config.get('JWT_EXPIRATION_DELTA')
 
-        if keep_logged_in or identity.duration > jwt_expiration_delta:
+        current_jwt = request.headers.get('Authorization')
+        if current_jwt:
+            current_jwt = current_jwt.split(' ')[1]
+            current_jwt = jwt.decode(
+                current_jwt,
+                key=current_app.config['SECRET_KEY']
+            )
+            print(current_jwt)
+
+        if keep_logged_in:
+            exp = iat + timedelta(seconds=app.config['JWT_MAX_EXPIRATION'])
+        elif current_jwt and timedelta(seconds=current_jwt.get('duration')) > jwt_expiration_delta:
             exp = iat + timedelta(seconds=app.config['JWT_MAX_EXPIRATION'])
         else:
             exp = iat + jwt_expiration_delta
@@ -58,7 +70,7 @@ class FlaskJWTWrapper(object):
             'nbf': nbf,
             'identity': identity.public_id,
             'jwt_claim': str(identity.jwt_claim),
-            'duration': (exp - iat).total_seconds(),
+            'duration': int((exp - iat).total_seconds()),
         }
 
     @staticmethod
