@@ -7,6 +7,7 @@ class Config(object):
     MAILGUN_ORIGIN_EMAIL = 'postmaster@sandbox8a96f3c057b14e869059887391a8797e.mailgun.org'
     MAILGUN_API_KEY = 'key-1c7814ed089d926cc10daf50b3bce91c'
     HOST = 'http://localhost:5000'
+    JWT_MAX_EXPIRATION = 2592000
     VERIFY_EMAIL_CONTENT = """
 <html>
 <head>

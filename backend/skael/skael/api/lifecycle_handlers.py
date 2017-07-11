@@ -25,6 +25,5 @@ def start_lifecycle_hooks(_app):
 
 
 def __encode_token():
-    current_identity = TestClass()
     jwt = FlaskJWTWrapper.create_jwt(current_app, current_identity)
     return FlaskJWTWrapper.sign_jwt(jwt)

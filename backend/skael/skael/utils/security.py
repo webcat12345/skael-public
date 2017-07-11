@@ -1,10 +1,9 @@
 from datetime import datetime, timedelta
 
 import jwt
-import requests
 import uuid
 
-from flask import current_app
+from flask import current_app, request
 from skael.DAOs.user_dao import UserDAO
 from skael.models import db
 from skael.models.user_table import UserTable as User
@@ -41,12 +40,14 @@ class FlaskJWTWrapper(object):
         ).first()
 
     @staticmethod
-    def create_jwt(app, identity, *, keep_logged_in=False):
+    def create_jwt(app, identity):
         iat = datetime.utcnow()
         nbf = iat + app.config.get('JWT_NOT_BEFORE_DELTA')
 
+        keep_logged_in = request.headers.get('KeepLoggedIn')
+
         if keep_logged_in:
-            exp = iat + timedelta(seconds=2592000)
+            exp = iat + timedelta(seconds=app.config['JWT_MAX_EXPIRATION'])
         else:
             exp = iat + app.config.get('JWT_EXPIRATION_DELTA')
 
