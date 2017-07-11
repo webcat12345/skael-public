@@ -39,7 +39,7 @@ class UserFacade(object):
 
             MailgunIntegration().send_email(
                 current_app.config['MAILGUN_ORIGIN_EMAIL'],
-                'ian@ianleeclark.com',
+                new_user.email,
                 'Please verify your account',
                 current_app.config['VERIFY_EMAIL_CONTENT'].format(
                     '{0}/users/verify/{1}'.format(
@@ -87,7 +87,7 @@ class UserFacade(object):
 
             MailgunIntegration().send_email(
                 current_app.config['MAILGUN_ORIGIN_EMAIL'],
-                'ian@ianleeclark.com',
+                user.email,
                 'Reset your password',
                 current_app.config['RESET_EMAIL_CONTENT'].format(
                     '{0}/users/reset_password/{1}'.format(
