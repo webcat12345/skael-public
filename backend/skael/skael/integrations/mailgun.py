@@ -36,7 +36,7 @@ class MailgunIntegration(object):
                     'from': email_from,
                     'to': email_to,
                     'subject': subject,
-                    'text': body
+                    'html': body
                 }
             )
 

@@ -51,7 +51,6 @@ def create_app(config_file=None):
                                 else None))
 
     with app.app_context():
-
         user_export_routes(app)
         verify_export_routes(app)
         reset_export_routes(app)
@@ -70,6 +69,5 @@ def create_app(config_file=None):
 
         db.init_app(app)
         app.db = db
-        db.create_all()
 
     return app

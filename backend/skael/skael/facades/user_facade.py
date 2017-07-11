@@ -37,12 +37,15 @@ class UserFacade(object):
                 username
             )
 
-            MailgunIntegration.send_email(
+            MailgunIntegration().send_email(
                 current_app.config['MAILGUN_ORIGIN_EMAIL'],
-                new_user.email,
+                'ian@ianleeclark.com',
                 'Please verify your account',
                 current_app.config['VERIFY_EMAIL_CONTENT'].format(
-                    new_user.verify_token
+                    '{0}/users/verify/{1}'.format(
+                        current_app.config['HOST'],
+                        new_user.verify_token,
+                    )
                 )
             )
 
@@ -82,12 +85,15 @@ class UserFacade(object):
         try:
             new_token, user = UserDAO().regenerate_token(email, 'reset_token')
 
-            MailgunIntegration.send_email(
+            MailgunIntegration().send_email(
                 current_app.config['MAILGUN_ORIGIN_EMAIL'],
-                user.email,
-                'Please verify your account',
+                'ian@ianleeclark.com',
+                'Reset your password',
                 current_app.config['RESET_EMAIL_CONTENT'].format(
-                    new_token
+                    '{0}/users/reset_password/{1}'.format(
+                        current_app.config['HOST'],
+                        new_token,
+                    )
                 )
             )
 
