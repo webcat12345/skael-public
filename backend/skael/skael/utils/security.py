@@ -45,18 +45,20 @@ class FlaskJWTWrapper(object):
         nbf = iat + app.config.get('JWT_NOT_BEFORE_DELTA')
 
         keep_logged_in = request.headers.get('KeepLoggedIn')
+        jwt_expiration_delta = app.config.get('JWT_EXPIRATION_DELTA')
 
-        if keep_logged_in:
+        if keep_logged_in or identity.duration > jwt_expiration_delta:
             exp = iat + timedelta(seconds=app.config['JWT_MAX_EXPIRATION'])
         else:
-            exp = iat + app.config.get('JWT_EXPIRATION_DELTA')
+            exp = iat + jwt_expiration_delta
 
         return {
             'exp': exp,
             'iat': iat,
             'nbf': nbf,
             'identity': identity.public_id,
-            'jwt_claim': str(identity.jwt_claim)
+            'jwt_claim': str(identity.jwt_claim),
+            'duration': (exp - iat).total_seconds(),
         }
 
     @staticmethod
