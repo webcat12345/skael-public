@@ -1,5 +1,4 @@
 import logging
-from sqlite3 import IntegrityError
 
 from flask import current_app
 
@@ -171,7 +170,7 @@ class UserFacade(object):
     def _safe_commit(self):
         try:
             db.session.commit()
-        except IntegrityError as e:
+        except IntegrationException as e:
             logging.info(
                 'Failed to commit: {0}'.format(e)
             )
