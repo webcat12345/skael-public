@@ -24,11 +24,17 @@ class Authentication(MethodView):
 
         return jsonify({'success': True})
 
+    @jwt_required()
+    def get(self):
+        """
+        Verifies a JWT is still valid.
+        """
+        return jsonify({'success': True})
+
 
 def export_routes(_app):
     _app.add_url_rule(
-        '/users/logout',
-        view_func=Authentication.as_view('api_v1_auth_logout'),
-        methods=['DELETE']
+        '/users/auth',
+        view_func=Authentication.as_view('api_v1_auth'),
+        methods=['DELETE', 'GET']
     )
-

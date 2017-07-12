@@ -1,5 +1,4 @@
 import logging
-from sqlite3 import IntegrityError
 
 from flask import current_app
 
@@ -37,12 +36,15 @@ class UserFacade(object):
                 username
             )
 
-            MailgunIntegration.send_email(
+            MailgunIntegration().send_email(
                 current_app.config['MAILGUN_ORIGIN_EMAIL'],
                 new_user.email,
                 'Please verify your account',
                 current_app.config['VERIFY_EMAIL_CONTENT'].format(
-                    new_user.verify_token
+                    '{0}/users/verify/{1}'.format(
+                        current_app.config['HOST'],
+                        new_user.verify_token,
+                    )
                 )
             )
 
@@ -82,12 +84,15 @@ class UserFacade(object):
         try:
             new_token, user = UserDAO().regenerate_token(email, 'reset_token')
 
-            MailgunIntegration.send_email(
+            MailgunIntegration().send_email(
                 current_app.config['MAILGUN_ORIGIN_EMAIL'],
                 user.email,
-                'Please verify your account',
+                'Reset your password',
                 current_app.config['RESET_EMAIL_CONTENT'].format(
-                    new_token
+                    '{0}/users/reset_password/{1}'.format(
+                        current_app.config['HOST'],
+                        new_token,
+                    )
                 )
             )
 
@@ -165,8 +170,8 @@ class UserFacade(object):
     def _safe_commit(self):
         try:
             db.session.commit()
-        except IntegrityError as e:
-            logging.error(
+        except IntegrationException as e:
+            logging.info(
                 'Failed to commit: {0}'.format(e)
             )
 

@@ -12,7 +12,8 @@ from skael.models import db
 from skael.api import user_export_routes
 from skael.api import reset_export_routes
 from skael.api import verify_export_routes
-from skael.api import logout_export_routes
+from skael.api import auth_export_routes
+from skael.api.lifecycle_handlers import start_lifecycle_hooks
 from skael.utils.error_handler import register_error_handlers
 
 
@@ -29,20 +30,11 @@ def create_app(config_file=None):
     app = Flask(__name__)
     app.config.from_object('skael.config.Config')
 
-    jwt = JWT(app, FlaskJWTWrapper.authenticate, FlaskJWTWrapper.identify)
+    app.jwt = JWT(app, FlaskJWTWrapper.authenticate, FlaskJWTWrapper.identify)
 
-    @jwt.jwt_payload_handler
+    @app.jwt.jwt_payload_handler
     def jwt_handler(identity):
-        iat = datetime.utcnow()
-        exp = iat + app.config.get('JWT_EXPIRATION_DELTA')
-        nbf = iat + app.config.get('JWT_NOT_BEFORE_DELTA')
-        return {
-            'exp': exp,
-            'iat': iat,
-            'nbf': nbf,
-            'identity': identity.public_id,
-            'jwt_claim': str(identity.jwt_claim)
-        }
+        return FlaskJWTWrapper.create_jwt(app, identity)
 
     logging.basicConfig(
         level=logging.DEBUG,
@@ -55,7 +47,8 @@ def create_app(config_file=None):
         user_export_routes(app)
         verify_export_routes(app)
         reset_export_routes(app)
-        logout_export_routes(app)
+        auth_export_routes(app)
+        start_lifecycle_hooks(app)
 
         # This is just a test will be removed in production
         # to follow best practises
