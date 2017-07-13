@@ -7,3 +7,5 @@ product to help make better data-driven IT decisions across all verticals.
 
 To start on Flask/Angular development, read the [Development
 docs](docs/README.md)
+
+API docs for frontend usage is [documented under api_docs](docs/api_docs.md)
