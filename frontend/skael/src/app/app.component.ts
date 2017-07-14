@@ -1,21 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Component } from '@angular/core';
 import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'skael-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  template: `<router-outlet></router-outlet>`
 })
-export class AppComponent implements OnInit{
-  title = 'app';
-  postgres_version = '';
+export class AppComponent {
 
-  constructor (private http: Http) {}
+  constructor () {}
 
-  ngOnInit() {
-    // this.http.get("/api/hello").subscribe((res: Response) => {
-    //     this.postgres_version = res.json().postgres_version;
-    // });
-  }
 }
