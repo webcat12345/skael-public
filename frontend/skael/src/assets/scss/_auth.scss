@@ -1,0 +1,69 @@
+section.auth-section {
+  height: 100vh;
+  .auth-box {
+    top: 40%;
+    left: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    .img-logo {
+      width: 200px;
+      margin: 67px 0;
+    }
+    .h1 {
+      color: #555;
+      font-weight: 400;
+      display: block;
+      font-family: 'Bree Serif', serif;
+    }
+    button {
+      height: 46px;
+      color: $white;
+      font-family: 'Bree Serif', serif;
+    }
+    button.btn-social i{
+      float: left;
+      font-size: 30px;
+      display: block;
+      padding: 6px 0;
+      height: 100%;
+      padding-right: 10px;
+      border-right: 2px solid rgba(110, 65, 65, 0.31);
+    }
+    .account-wall {
+      margin-top: 20px;
+      padding: 40px 0 20px 0;
+      background-color: #f7f7f7;
+      -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+      -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 15px 28px 4px rgba(102, 102, 102, 0.3);
+      .form-auth {
+        max-width: 330px;
+        padding: 15px;
+        margin: 0 auto;
+        .form-control {
+          position: relative;
+          font-size: 16px;
+          height: auto;
+          padding: 10px;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          &:focus {
+            z-index: 2;
+          }
+          input[type="text"] {
+            margin-bottom: -1px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+          }
+          input[type="password"] {
+            margin-bottom: 10px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+          }
+        }
+      }
+    }
+  }
+}

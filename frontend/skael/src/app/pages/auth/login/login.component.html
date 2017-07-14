@@ -1,5 +1,26 @@
-<div class="container">
-  <p>Bootstrap 4 works</p>
-  <button class="btn btn-primary">Bootstrap4 Test button</button>
-</div>
-<button md-raised-button>Raised button</button>
+<section class="auth-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-md-4 auth-box">
+        <img src="assets/images/logo.png" class="img-logo">
+        <h1 class="text-center login-title">Sign In</h1>
+        <div class="account-wall">
+          <form class="form-auth">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Email address" required autofocus>
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" placeholder="Password" required>
+            </div>
+            <button md-raised-button class="btn btn-lg btn-info btn-block" type="submit">Sign In</button>
+            <div class="h-seperator">
+              <span>or</span>
+            </div>
+            <button md-raised-button class="btn btn-lg btn-danger btn-block btn-social" type="button"><i class="fa fa-google" aria-hidden="true"></i>Sign in with Google</button>
+          </form>
+        </div>
+        <div class="mt-lg-5"><span>Don't you have account?</span><a routerLink="/signup" class="ml-1"> Sign up</a></div>
+      </div>
+    </div>
+  </div>
+</section>

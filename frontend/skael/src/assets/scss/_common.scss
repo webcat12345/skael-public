@@ -1,0 +1,14 @@
+.h-seperator {
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  height: 17px;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+  color: #ccc;
+  span {
+    font-size: 18px;
+    background-color: #eceeef;
+    padding: 0 10px;
+  }
+}
