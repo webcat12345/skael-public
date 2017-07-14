@@ -5,6 +5,7 @@ node_js:
   - "7.6.0"
 
 script:
+  - cd frontend/skael
   - npm install
   - ng build --prod
 
