@@ -97,3 +97,6 @@ ENV/
 
 # Added by developers
 .idea
+
+# Webstorm Angular-CLI support
+.angular-cli.json
