@@ -3,6 +3,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
+import { environment } from 'environments/environment';
+import { LocalStorageModule } from 'angular-2-local-storage';
 import 'hammerjs';
 
 import { AppRoutingModule } from './app.routing';
@@ -19,6 +21,7 @@ import { HttpHelperService, ApiRoutingHelperService } from './core/helpers'
     BrowserModule,
     HttpModule,
     BrowserAnimationsModule,
+    LocalStorageModule.withConfig({prefix: environment.localStorage.prefix, storageType: 'localStorage'}),
     AppRoutingModule
   ],
   providers: [HttpHelperService, ApiRoutingHelperService],

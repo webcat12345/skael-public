@@ -13,12 +13,12 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getAPIStatus().subscribe(res => {
-      console.log(res);
-    });
+    this.getAPIStatus();
   }
 
   getAPIStatus(): void {
-
+    this.authService.getUser().subscribe(res => {
+      console.log(res);
+    })
   }
 }
