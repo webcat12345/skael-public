@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 
 import { HttpHelperService, ApiRoutingHelperService } from './core/helpers'
+import { AuthGuard, AuthService } from './core/auth';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,12 @@ import { HttpHelperService, ApiRoutingHelperService } from './core/helpers'
     LocalStorageModule.withConfig({prefix: environment.localStorage.prefix, storageType: 'localStorage'}),
     AppRoutingModule
   ],
-  providers: [HttpHelperService, ApiRoutingHelperService],
+  providers: [
+    HttpHelperService,
+    ApiRoutingHelperService,
+    AuthService,
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

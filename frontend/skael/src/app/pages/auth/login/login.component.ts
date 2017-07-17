@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { AuthService } from 'app/core/auth';
 
 import { Auth } from 'app/core/models';
@@ -25,6 +27,7 @@ export class LoginComponent implements OnInit {
   error: Error = new Error();
 
   constructor(
+    private router: Router,
     private authService: AuthService
   ) { }
 
@@ -39,13 +42,12 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.user).subscribe((res) => {
       this.isLoading = false;
       if (res.success) {
-        console.log('login succeed!');
+        this.router.navigate(['/']);
       }
     }, (err) => {
       this.isLoading = false;
       this.error.isError = true;
       this.error.message = 'The username/password couple is invalid.';
-      console.log(this.error);
     })
   }
 }

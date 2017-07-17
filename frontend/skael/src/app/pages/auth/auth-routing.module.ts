@@ -13,11 +13,11 @@ const routes: Routes = [
   }, {
     path: 'signup', component: SignupComponent
   }, {
-    path: 'auth', component: AuthComponent,
+    path: 'v2', component: AuthComponent,
     children: [
-      { path: 'signin', component: PilotSigninComponent },
+      { path: 'login', component: PilotSigninComponent },
       { path: 'signup', component: PilotSignupComponent },
-      { path: '**', redirectTo: 'signin'}
+      { path: '**', redirectTo: 'login'}
     ]
   }, {
     path: '**',
