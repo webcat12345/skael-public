@@ -67,3 +67,53 @@ section.auth-section {
     }
   }
 }
+
+.pilot-auth-section {
+  background-color: #282759;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  .navbar {
+    border-bottom: 1px solid #575681;
+    .navbar-brand {
+      img {
+        width: 110px;
+      }
+    }
+    ul {
+      li {
+        color: white;
+      }
+    }
+  }
+  .left-side, .right-side {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+  }
+  h1, h2 {
+    color: white;
+  }
+  h1 {
+    line-height: 1.5;
+  }
+  .form-auth {
+    .form-control {
+      color: rgb(182, 182, 182);
+      background-color: rgba(113, 112, 193, 0.32);
+      line-height: 2.25;
+      border: 1px solid rgba(236, 238, 239, 0.26)
+    }
+    button {
+      height: 55px;
+      color: white
+    }
+    .mat-checkbox-label {
+      color: rgba(255, 255, 255, 0.51);
+    }
+  }
+}

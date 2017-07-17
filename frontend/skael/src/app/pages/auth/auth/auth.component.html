@@ -1,0 +1,27 @@
+<section class="pilot-auth-section">
+  <nav class="navbar navbar-toggleable-xl navbar-inverse sticky-top py-lg-4 px-lg-5 mx-lg-5">
+    <a class="navbar-brand" routerLink="/"><img src="assets/images/logo-pilot.png"></a>
+    <ul class="navbar-nav ml-auto mt-2 mt-md-0">
+      <li class="nav-item" routerLinkActive="hidden">
+        <a class="nav-link" routerLink="/auth/signin">Sign In</a>
+      </li>
+      <li class="nav-item" routerLinkActive="hidden">
+        <a class="nav-link" routerLink="/auth/signup">Sign Up</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 left-side hidden-xs-down">
+        <h1>Make intelligent B2B
+          procurement & operations
+          deciscions in seconds.</h1>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 right-side">
+        <div class="form-wrapper p-lg-5">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

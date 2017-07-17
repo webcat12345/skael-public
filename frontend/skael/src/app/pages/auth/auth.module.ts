@@ -6,6 +6,9 @@ import { MaterialModule } from 'app/shared/material/material.module'
 
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { AuthComponent } from './auth/auth.component';
+import { PilotSigninComponent } from './pilot-signin/pilot-signin.component';
+import { PilotSignupComponent } from './pilot-signup/pilot-signup.component';
 
 @NgModule({
   imports: [
@@ -13,6 +16,12 @@ import { SignupComponent } from './signup/signup.component';
     AuthRoutingModule,
     MaterialModule
   ],
-  declarations: [LoginComponent, SignupComponent]
+  declarations: [
+    LoginComponent,
+    SignupComponent,
+    AuthComponent,
+    PilotSigninComponent,
+    PilotSignupComponent
+  ]
 })
 export class AuthModule { }
