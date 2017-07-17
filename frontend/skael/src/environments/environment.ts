@@ -9,5 +9,6 @@ export const environment = {
     prefix: 'SKAEL', // prefix
     token: 'AUTH_TOKEN', // token storage
     user_info: 'ME' // authenticated user info
-  }
+  },
+  baseAPIUrl: 'http://localhost/'
 };

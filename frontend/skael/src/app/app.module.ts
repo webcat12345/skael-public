@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app.routing';
 
 import { AppComponent } from './app.component';
 
-import { HttpHelperService } from './core/helpers'
+import { HttpHelperService, ApiRoutingHelperService } from './core/helpers'
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { HttpHelperService } from './core/helpers'
     BrowserAnimationsModule,
     AppRoutingModule
   ],
-  providers: [HttpHelperService],
+  providers: [HttpHelperService, ApiRoutingHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

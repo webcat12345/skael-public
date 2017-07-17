@@ -10,6 +10,8 @@ import { AuthComponent } from './auth/auth.component';
 import { PilotSigninComponent } from './pilot-signin/pilot-signin.component';
 import { PilotSignupComponent } from './pilot-signup/pilot-signup.component';
 
+import { AuthService } from 'app/core/auth';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -22,6 +24,9 @@ import { PilotSignupComponent } from './pilot-signup/pilot-signup.component';
     AuthComponent,
     PilotSigninComponent,
     PilotSignupComponent
+  ],
+  providers: [
+    AuthService
   ]
 })
 export class AuthModule { }

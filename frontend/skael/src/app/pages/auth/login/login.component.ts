@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'app/core/auth';
 
 @Component({
   selector: 'skael-login',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
+    this.getAPIStatus().subscribe(res => {
+      console.log(res);
+    });
   }
 
+  getAPIStatus(): void {
+
+  }
 }
