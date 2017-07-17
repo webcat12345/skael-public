@@ -33,11 +33,19 @@ export class LoginComponent implements OnInit {
     this.user.password = 'riteshn';
   }
 
-  login(form): void {
+  login(): void {
     this.isLoading = true;
     this.error.isError = false;
-    this.authService.login(this.user).subscribe(res => {
-      console.log(res);
+    this.authService.login(this.user).subscribe((res) => {
+      this.isLoading = false;
+      if (res.success) {
+        console.log('login succeed!');
+      }
+    }, (err) => {
+      this.isLoading = false;
+      this.error.isError = true;
+      this.error.message = 'The username/password couple is invalid.';
+      console.log(this.error);
     })
   }
 }
