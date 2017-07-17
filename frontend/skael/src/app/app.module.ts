@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { environment } from 'environments/environment';
 import { LocalStorageModule } from 'angular-2-local-storage';
+import { CookieModule } from 'ngx-cookie';
 import 'hammerjs';
 
 import { AppRoutingModule } from './app.routing';
@@ -20,6 +21,7 @@ import { HttpHelperService, ApiRoutingHelperService } from './core/helpers'
   imports: [
     BrowserModule,
     HttpModule,
+    CookieModule.forRoot(),
     BrowserAnimationsModule,
     LocalStorageModule.withConfig({prefix: environment.localStorage.prefix, storageType: 'localStorage'}),
     AppRoutingModule

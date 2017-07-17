@@ -5,15 +5,15 @@
         <img src="assets/images/logo.png" class="img-logo">
         <h1 class="text-center login-title">Sign In</h1>
         <div class="account-wall">
-          <form class="form-auth">
+          <form class="form-auth" #f="ngForm" (ngSubmit)="f.form.valid && login()" novalidate>
             <div class="form-group mb-4">
-              <input type="text" class="form-control" placeholder="Email address" required autofocus>
+              <input type="text" class="form-control" placeholder="Email address" name="username" [(ngModel)]="user.username" required autofocus>
             </div>
             <div class="form-group mb-4">
-              <input type="password" class="form-control" placeholder="Password" required>
+              <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="user.password" required>
             </div>
             <div class="form-group text-left">
-              <md-checkbox color="primary">Remember me</md-checkbox>
+              <md-checkbox color="primary" name="rememberMe" [(ngModel)]="rememberMe">Remember me</md-checkbox>
             </div>
             <button md-raised-button class="btn btn-lg btn-info btn-block" type="submit">Sign In</button>
           </form>

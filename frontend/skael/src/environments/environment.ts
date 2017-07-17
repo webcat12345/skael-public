@@ -10,5 +10,10 @@ export const environment = {
     token: 'AUTH_TOKEN', // token storage
     user_info: 'ME' // authenticated user info
   },
-  baseAPIUrl: 'http://localhost/'
+  cookie: {
+    storage: 'SKAEL', // cookie storage
+    value: 'DK383932NVM', // cookie key
+    life: 5 // life cycle of cookie days
+  },
+  baseAPIUrl: 'http://107.170.200.188/'
 };
