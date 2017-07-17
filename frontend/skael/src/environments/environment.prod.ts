@@ -10,5 +10,5 @@ export const environment = {
     value: 'DK383932NVM', // cookie key
     life: 5 // life cycle of cookie days
   },
-  baseAPIUrl: 'http://107.170.200.188/'
+  baseAPIUrl: '/'
 };
