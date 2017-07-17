@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'skael-auth',
@@ -8,20 +7,9 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class AuthComponent implements OnInit {
 
-  isLoginPage = true;
-
-  constructor(
-    private router: Router
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-    this.router.events.subscribe(val => {
-      if (this.router.url === '/auth/signup') {
-        this.isLoginPage = false;
-      } else {
-        this.isLoginPage = true;
-      }
-    })
   }
 
 }
