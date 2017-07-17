@@ -32,7 +32,7 @@ export class HttpHelperService {
 
     if (requiredAuth) {
       const token = this.localStorageService.get(environment.localStorage.token);
-      headers.append('authorization', 'bearer ' + token);
+      headers.append('Authorization', 'JWT ' + token);
     }
 
     if (customHeader) {
@@ -81,6 +81,20 @@ export class HttpHelperService {
       body = urlSearchParams.toString();
     }
     return this.http.post(url, body, this.generateReqOptions(isUrlEncoded, requiredAuth, headers))
+      .map(x => x.json())
+      .catch(this.handleError);
+  }
+
+  /***
+   * http delete helper
+   * @param url
+   * @param isUrlEncoded
+   * @param requiredAuth
+   * @param headers
+   * @returns {Observable<R|T>}
+   */
+  delete(url: string, isUrlEncoded = false, requiredAuth = false, headers?: Headers): Observable<any> {
+    return this.http.delete(url, this.generateReqOptions(isUrlEncoded, requiredAuth, headers))
       .map(x => x.json())
       .catch(this.handleError);
   }

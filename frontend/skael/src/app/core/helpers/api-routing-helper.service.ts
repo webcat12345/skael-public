@@ -8,12 +8,15 @@ export class ApiRoutingHelperService {
 
   constructor() { }
 
-  getUserAPIUrl(): string {
+  userAPIUrl(): string {
     return this.baseUrl + 'users/';
   }
 
-  loginUserAPIUrl(): string {
+  authAPIUrl(): string {
     return this.baseUrl + 'auth';
   }
 
+  userAuthAPIUrl(): string {
+    return this.baseUrl + 'users/auth'
+  }
 }

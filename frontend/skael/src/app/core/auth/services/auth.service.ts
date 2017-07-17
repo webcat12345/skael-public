@@ -37,9 +37,17 @@ export class AuthService {
    * @returns {Observable<R>}
    */
   login(user: Auth, rememberMe = false) {
-    return this.http.post(this.apiRoutingHelper.loginUserAPIUrl(), user).map(res => {
+    return this.http.post(this.apiRoutingHelper.authAPIUrl(), user).map(res => {
       this.localStorageService.set(environment.localStorage.token, res.access_token);
       this.setCookie(rememberMe);
+      return {success: true};
+    });
+  }
+
+  logout() {
+    return this.http.delete(this.apiRoutingHelper.userAuthAPIUrl(), false, true, null).map(res => {
+      this.localStorageService.remove(environment.localStorage.token);
+      this.cookieService.remove(environment.cookie.storage);
       return {success: true};
     });
   }
