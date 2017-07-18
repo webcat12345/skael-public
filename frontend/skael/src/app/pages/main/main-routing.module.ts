@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { MainComponent } from './main.component';
+import { ContentComponent } from '.';
 
 const routes: Routes = [
-  { path: '', component: MainComponent },
-  { path: '**', redirectTo: '' }
+  {
+    path: 'content', component: ContentComponent
+  }, {
+    path: '**', redirectTo: 'content'
+  }
 ];
 
 @NgModule({

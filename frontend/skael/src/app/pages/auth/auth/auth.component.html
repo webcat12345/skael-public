@@ -1,26 +1,11 @@
-<section class="pilot-auth-section">
-  <nav class="navbar navbar-toggleable-xl navbar-inverse sticky-top py-lg-4 px-lg-5 mx-lg-5">
-    <a class="navbar-brand" routerLink="/"><img src="assets/images/logo-pilot.png"></a>
-    <ul class="navbar-nav ml-auto mt-2 mt-md-0">
-      <li class="nav-item" routerLinkActive="hidden">
-        <a class="nav-link" routerLink="/auth/v2/login">Sign In</a>
-      </li>
-      <li class="nav-item" routerLinkActive="hidden">
-        <a class="nav-link" routerLink="/auth/v2/signup">Sign Up</a>
-      </li>
-    </ul>
-  </nav>
+<section class="auth-section">
   <div class="container">
     <div class="row">
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 left-side hidden-xs-down">
-        <h1>Make intelligent B2B
-          procurement & operations
-          deciscions in seconds.</h1>
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 right-side">
-        <div class="form-wrapper p-lg-5">
-          <!--<router-outlet></router-outlet>-->
-        </div>
+      <div class="col-sm-6 col-md-4 auth-box">
+        <img src="assets/images/logo.png" class="img-logo">
+        <router-outlet></router-outlet>
+        <div class="mt-lg-5" routerLinkActive="hidden"><span>Don't you have account?</span><a routerLink="/signup" class="ml-1"> Sign up</a></div>
+        <div class="mt-lg-5" routerLinkActive="hidden"><span>Already have an account?</span><a routerLink="/login" class="ml-1"> Sign in</a></div>
       </div>
     </div>
   </div>

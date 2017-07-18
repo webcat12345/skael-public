@@ -1,0 +1,20 @@
+<section class="main-wrapper">
+  <skael-navbar [isLoggedIn]="isLoggedIn" (onLogout)="onLogout()" (onToggleForm)="onToggleForm($event)"></skael-navbar>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 left-side hidden-xs-down">
+        <h1>
+          Make intelligent B2B
+          procurement & operations
+          deciscions in seconds.
+        </h1>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 right-side">
+        <div class="home-auth form-wrapper p-lg-5" *ngIf="!isLoggedIn">
+          <skael-login (onLogin)="onLoginSucceed()" *ngIf="!isSignUp"></skael-login>
+          <skael-signup *ngIf="isSignUp"></skael-signup>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

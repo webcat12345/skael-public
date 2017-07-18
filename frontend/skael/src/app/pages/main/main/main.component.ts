@@ -10,23 +10,20 @@ import { AuthService } from 'app/core/auth';
 })
 export class MainComponent implements OnInit {
 
+  isLoggedIn = false;
+
   constructor(
     private authService: AuthService,
     private router: Router
   ) { }
 
   ngOnInit() {
+    this.isLoggedIn = this.authService.isLoggedIn();
   }
 
   onLogout(): void {
     this.authService.logout().subscribe(res => {
       this.router.navigate(['/login']);
-    });
-  }
-
-  onClickAPITest(): void {
-    this.authService.getUserInfo('c2fca35d-0e41-4c62-944a-114cd7365e1c').subscribe(res => {
-      console.log(res);
     });
   }
 }

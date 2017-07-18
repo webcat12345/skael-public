@@ -1,27 +1,16 @@
-<section class="auth-section">
-  <md-progress-bar mode="indeterminate" *ngIf="isLoading"></md-progress-bar>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-6 col-md-4 auth-box">
-        <img src="assets/images/logo.png" class="img-logo">
-        <h1 class="text-center login-title">Sign In</h1>
-        <div class="account-wall">
-          <form class="form-auth" #f="ngForm" (ngSubmit)="f.form.valid && login()" novalidate>
-            <div class="form-group mb-4" [class.has-danger]="error.isError">
-              <input type="text" class="form-control" [class.form-control-danger]="error.isError" placeholder="Email address" name="username" [(ngModel)]="user.username" required autofocus>
-              <div class="form-control-feedback" *ngIf="error.isError">{{error.message}}</div>
-            </div>
-            <div class="form-group mb-4" [class.has-danger]="error.isError">
-              <input type="password" class="form-control" [class.form-control-danger]="error.isError" placeholder="Password" name="password" [(ngModel)]="user.password" required>
-            </div>
-            <div class="form-group text-left">
-              <md-checkbox color="primary" name="rememberMe" [(ngModel)]="rememberMe">Remember me</md-checkbox>
-            </div>
-            <button md-raised-button class="btn btn-lg btn-info btn-block" type="submit" [disabled]="!f.form.valid">Sign In</button>
-          </form>
-        </div>
-        <div class="mt-lg-5"><span>Don't you have account?</span><a routerLink="/signup" class="ml-1"> Sign up</a></div>
-      </div>
+<h1 class="login-title">Sign In</h1>
+<div class="account-wall">
+  <form class="form-auth" #f="ngForm" (ngSubmit)="f.form.valid && login()" novalidate>
+    <div class="form-group mb-4" [class.has-danger]="error.isError">
+      <input type="text" class="form-control" [class.form-control-danger]="error.isError" placeholder="Email address" name="username" [(ngModel)]="user.username" required autofocus>
+      <div class="form-control-feedback" *ngIf="error.isError">{{error.message}}</div>
     </div>
-  </div>
-</section>
+    <div class="form-group mb-4" [class.has-danger]="error.isError">
+      <input type="password" class="form-control" [class.form-control-danger]="error.isError" placeholder="Password" name="password" [(ngModel)]="user.password" required>
+    </div>
+    <div class="form-group text-left">
+      <md-checkbox color="primary" name="rememberMe" [(ngModel)]="rememberMe">Remember me</md-checkbox>
+    </div>
+    <button md-raised-button class="btn btn-lg btn-info btn-block" type="submit" [disabled]="!f.form.valid">Sign In</button>
+  </form>
+</div>

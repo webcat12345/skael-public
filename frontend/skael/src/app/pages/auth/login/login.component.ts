@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from 'app/core/auth';
@@ -11,6 +11,8 @@ import { Auth, Error } from 'app/core/models';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
+  @Output() onLogin: EventEmitter<any> = new EventEmitter();
 
   user: Auth = new Auth();
   rememberMe = false;
@@ -34,6 +36,7 @@ export class LoginComponent implements OnInit {
       this.isLoading = false;
       if (res.success) {
         this.router.navigate(['/']);
+        this.onLogin.emit();
       }
     }, (err) => {
       this.isLoading = false;

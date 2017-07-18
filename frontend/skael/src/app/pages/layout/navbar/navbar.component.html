@@ -1,0 +1,14 @@
+<nav class="navbar navbar-toggleable-xl navbar-inverse sticky-top py-lg-4 px-lg-5 mx-lg-5">
+  <a class="navbar-brand" routerLink="/"><img src="assets/images/logo-pilot.png"></a>
+  <ul class="navbar-nav ml-auto mt-2 mt-md-0">
+    <li class="nav-item" *ngIf="!isLoggedIn && isSignUp">
+    <a class="nav-link" (click)="showSignIn()">Sign In</a>
+    </li>
+    <li class="nav-item" *ngIf="!isLoggedIn && !isSignUp">
+    <a class="nav-link" (click)="showSignUp()">Sign Up</a>
+    </li>
+    <li class="nav-item" *ngIf="isLoggedIn">
+    <a class="nav-link" (click)="logout()">Logout</a>
+    </li>
+  </ul>
+</nav>

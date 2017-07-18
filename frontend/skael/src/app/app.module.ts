@@ -16,16 +16,17 @@ import { HttpHelperService, ApiRoutingHelperService } from './core/helpers'
 import { AuthGuard, AuthService } from './core/auth';
 // app component
 import { AppComponent } from './app.component';
-import { LoginComponent, SignupComponent, PilotSignupComponent, PilotSigninComponent, AuthComponent } from './pages/auth';
+import { LoginComponent, SignupComponent, AuthComponent } from './pages/auth';
+import { LayoutComponent, NavbarComponent } from './pages/layout';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    PilotSigninComponent,
-    PilotSignupComponent,
-    AuthComponent
+    AuthComponent,
+    LayoutComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

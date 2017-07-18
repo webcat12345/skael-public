@@ -1,4 +1,4 @@
-section.auth-section {
+.auth-section {
   height: 100vh;
   .auth-box {
     top: 40%;
@@ -68,36 +68,7 @@ section.auth-section {
   }
 }
 
-.pilot-auth-section {
-  background-color: #282759;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  .navbar {
-    border-bottom: 1px solid #575681;
-    .navbar-brand {
-      img {
-        width: 110px;
-      }
-    }
-    ul {
-      li {
-        color: white;
-      }
-    }
-  }
-  .left-side, .right-side {
-    height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: left;
-  }
-  h1, h2 {
-    color: white;
-  }
+.home-auth {
   h1 {
     line-height: 1.5;
   }
