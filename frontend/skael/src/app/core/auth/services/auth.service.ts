@@ -49,9 +49,9 @@ export class AuthService {
    * @returns {Observable<R>}
    */
   logout() {
+    this.localStorageService.remove(environment.localStorage.token);
+    this.cookieService.remove(environment.cookie.storage);
     return this.http.delete(this.apiRoutingHelper.userAuthAPIUrl(), false, true, null).map(res => {
-      this.localStorageService.remove(environment.localStorage.token);
-      this.cookieService.remove(environment.cookie.storage);
       return {success: true};
     });
   }

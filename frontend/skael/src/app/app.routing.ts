@@ -13,8 +13,7 @@ export const routes: Routes = [
   }, {
     path: 'main', loadChildren: './pages/main/main.module#MainModule', canActivate: [AuthGuard]
   }, {
-    path: '**',
-    redirectTo: 'main'
+    path: '', redirectTo: 'main', pathMatch: 'full'
   }
 ];
 
