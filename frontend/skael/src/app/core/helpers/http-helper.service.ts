@@ -3,6 +3,7 @@ import { Http, RequestOptions, Headers, Response, URLSearchParams} from '@angula
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
+import { CookieService } from 'ngx-cookie';
 import { LocalStorageService } from 'angular-2-local-storage';
 import { environment } from 'environments/environment';
 
@@ -11,7 +12,8 @@ export class HttpHelperService {
 
   constructor(
     private http: Http,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private cookieService: CookieService
   ) { }
 
   /***
@@ -108,17 +110,19 @@ export class HttpHelperService {
     let errMsg: string;
     if (error instanceof Response) {
       const body = error.json() || '';
-      // const err = body.error || JSON.stringify(body);
-      // errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-      errMsg = '';
+
+      /***
+       * ! IMPORTANT SECTION
+       * if error is 401 (Unauthorized) then
+       * current session should be destoried
+       */
+
+      if (error.status === 401) {
+        this.localStorageService.remove(environment.localStorage.token);
+        this.cookieService.remove(environment.cookie.storage);
+      }
+
       errMsg = body.msg;
-      // console.log(body);
-      // if (body.errors) {
-      //   body.errors.forEach(_err => {
-      //     errMsg += _err.field + ' ' + _err.message;
-      //   })
-      // }
-      // errMsg = `${err}`;
     } else {
       errMsg = error.message ? error.message : error.toString();
     }

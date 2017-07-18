@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { environment } from 'environments/environment';
 
 import { LocalStorageService } from 'angular-2-local-storage';
@@ -30,6 +31,11 @@ export class AuthService {
     }
   }
 
+  /***
+   * register new user
+   * @param user
+   * @returns {Observable<any>}
+   */
   signup(user: SignupInfo) {
     return this.http.post(this.apiRoutingHelper.userAPIUrl(), user);
   }
@@ -41,8 +47,8 @@ export class AuthService {
    * @returns {Observable<R>}
    */
   login(user: Auth, rememberMe = false) {
-    return this.http.post(this.apiRoutingHelper.authAPIUrl(), user).map(res => {
-      this.localStorageService.set(environment.localStorage.token, res.access_token);
+    return this.http.post(this.apiRoutingHelper.authAPIUrl(), user).map(x => {
+      this.localStorageService.set(environment.localStorage.token, x.access_token);
       this.setCookie(rememberMe);
       return {success: true};
     });
@@ -53,10 +59,12 @@ export class AuthService {
    * @returns {Observable<R>}
    */
   logout() {
-    this.localStorageService.remove(environment.localStorage.token);
-    this.cookieService.remove(environment.cookie.storage);
-    return this.http.delete(this.apiRoutingHelper.userAuthAPIUrl(), false, true, null).map(res => {
+    return this.http.delete(this.apiRoutingHelper.userAuthAPIUrl(), false, true, null).map(x => {
+      this.localStorageService.remove(environment.localStorage.token);
+      this.cookieService.remove(environment.cookie.storage);
       return {success: true};
+    }).catch(err => {
+      return Observable.of({success: false});
     });
   }
 
@@ -76,6 +84,14 @@ export class AuthService {
    */
   verifyUser(uid) {
     return this.http.post(this.apiRoutingHelper.userVerifyAPIUrl(), {token: uid}).map(x => x)
+  }
+
+  /***
+   * check authentication session
+   * @returns {Observable<any>}
+   */
+  checkTokenSession() {
+    return this.http.get(this.apiRoutingHelper.userAuthAPIUrl(), null, true, null)
   }
 
   /***
