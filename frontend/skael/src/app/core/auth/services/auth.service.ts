@@ -44,12 +44,34 @@ export class AuthService {
     });
   }
 
+  /***
+   * logout user
+   * @returns {Observable<R>}
+   */
   logout() {
     return this.http.delete(this.apiRoutingHelper.userAuthAPIUrl(), false, true, null).map(res => {
       this.localStorageService.remove(environment.localStorage.token);
       this.cookieService.remove(environment.cookie.storage);
       return {success: true};
     });
+  }
+
+  /***
+   * get user info
+   * @param uid
+   * @returns {Observable<R>}
+   */
+  getUserInfo(uid: string) {
+    return this.http.get(this.apiRoutingHelper.userAPIUrl() + uid, null, true, null).map(x => x)
+  }
+
+  /***
+   * verify user
+   * @param uid
+   * @returns {Observable<R>}
+   */
+  verifyUser(uid) {
+    return this.http.post(this.apiRoutingHelper.userVerifyAPIUrl(), {token: uid}).map(x => x)
   }
 
   /***

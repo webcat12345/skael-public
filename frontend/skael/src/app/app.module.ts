@@ -2,18 +2,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-
+// npm libraries
 import { environment } from 'environments/environment';
 import { LocalStorageModule } from 'angular-2-local-storage';
 import { CookieModule } from 'ngx-cookie';
 import 'hammerjs';
-
+// routing module
 import { AppRoutingModule } from './app.routing';
-
-import { AppComponent } from './app.component';
-
+// auth module
+import { AuthModule } from './pages/auth/auth.module';
+// services
 import { HttpHelperService, ApiRoutingHelperService } from './core/helpers'
 import { AuthGuard, AuthService } from './core/auth';
+// app component
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { AuthGuard, AuthService } from './core/auth';
     CookieModule.forRoot(),
     BrowserAnimationsModule,
     LocalStorageModule.withConfig({prefix: environment.localStorage.prefix, storageType: 'localStorage'}),
-    AppRoutingModule
+    AppRoutingModule,
+    AuthModule
   ],
   providers: [
     HttpHelperService,

@@ -19,4 +19,8 @@ export class ApiRoutingHelperService {
   userAuthAPIUrl(): string {
     return this.baseUrl + 'users/auth'
   }
+
+  userVerifyAPIUrl(): string {
+    return this.baseUrl + 'users/verify'
+  }
 }

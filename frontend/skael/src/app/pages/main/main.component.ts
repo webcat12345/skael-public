@@ -25,4 +25,10 @@ export class MainComponent implements OnInit {
       }
     });
   }
+
+  onClickAPITest(): void {
+    this.authService.getUserInfo('c2fca35d-0e41-4c62-944a-114cd7365e1c').subscribe(res => {
+      console.log(res);
+    });
+  }
 }
