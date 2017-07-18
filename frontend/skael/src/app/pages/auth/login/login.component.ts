@@ -3,16 +3,7 @@ import { Router } from '@angular/router';
 
 import { AuthService } from 'app/core/auth';
 
-import { Auth } from 'app/core/models';
-
-class Error {
-  public isError: boolean;
-  public message: string;
-  constructor() {
-    this.isError = false;
-    this.message = '';
-  }
-}
+import { Auth, Error } from 'app/core/models';
 
 @Component({
   selector: 'skael-login',

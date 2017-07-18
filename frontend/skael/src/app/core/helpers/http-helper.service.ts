@@ -111,11 +111,13 @@ export class HttpHelperService {
       // const err = body.error || JSON.stringify(body);
       // errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
       errMsg = '';
-      if (body.errors) {
-        body.errors.forEach(_err => {
-          errMsg += _err.field + ' ' + _err.message;
-        })
-      }
+      errMsg = body.msg;
+      // console.log(body);
+      // if (body.errors) {
+      //   body.errors.forEach(_err => {
+      //     errMsg += _err.field + ' ' + _err.message;
+      //   })
+      // }
       // errMsg = `${err}`;
     } else {
       errMsg = error.message ? error.message : error.toString();

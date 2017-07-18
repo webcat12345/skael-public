@@ -5,7 +5,7 @@ import { LocalStorageService } from 'angular-2-local-storage';
 import { CookieService } from 'ngx-cookie';
 import { ApiRoutingHelperService, HttpHelperService } from 'app/core/helpers';
 
-import { Auth } from 'app/core/models';
+import { Auth, SignupInfo } from 'app/core/models';
 
 @Injectable()
 export class AuthService {
@@ -28,6 +28,10 @@ export class AuthService {
       this.localStorageService.remove(environment.localStorage.token);
       return false;
     }
+  }
+
+  signup(user: SignupInfo) {
+    return this.http.post(this.apiRoutingHelper.userAPIUrl(), user);
   }
 
   /***
