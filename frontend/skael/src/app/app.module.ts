@@ -3,8 +3,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-// npm libraries
+// environment
 import { environment } from 'environments/environment';
+// npm libraries
 import { LocalStorageModule } from 'angular-2-local-storage';
 import { CookieModule } from 'ngx-cookie';
 import 'hammerjs';
@@ -14,9 +15,10 @@ import { MaterialModule } from './shared/material/material.module';
 // services
 import { HttpHelperService, ApiRoutingHelperService } from './core/helpers'
 import { AuthGuard, AuthService } from './core/auth';
-// app component
+import { SharedService } from './shared/services';
+// components
 import { AppComponent } from './app.component';
-import { LoginComponent, SignupComponent, AuthComponent } from './pages/auth';
+import { LoginComponent, SignupComponent, AuthComponent, VerifyComponent } from './pages/auth';
 import { LayoutComponent, NavbarComponent } from './pages/layout';
 
 @NgModule({
@@ -26,7 +28,8 @@ import { LayoutComponent, NavbarComponent } from './pages/layout';
     SignupComponent,
     AuthComponent,
     LayoutComponent,
-    NavbarComponent
+    NavbarComponent,
+    VerifyComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,8 @@ import { LayoutComponent, NavbarComponent } from './pages/layout';
     HttpHelperService,
     ApiRoutingHelperService,
     AuthService,
-    AuthGuard
+    AuthGuard,
+    SharedService
   ],
   bootstrap: [AppComponent]
 })

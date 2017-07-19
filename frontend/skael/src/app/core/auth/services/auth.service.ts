@@ -83,7 +83,11 @@ export class AuthService {
    * @returns {Observable<R>}
    */
   verifyUser(uid) {
-    return this.http.post(this.apiRoutingHelper.userVerifyAPIUrl(), {token: uid}).map(x => x)
+    return this.http.post(this.apiRoutingHelper.userVerifyAPIUrl(), {token: uid}).map(x => {
+      return {success: true}
+    }).catch(err => {
+      return Observable.of({success: false})
+    })
   }
 
   /***
